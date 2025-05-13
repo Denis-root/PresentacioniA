@@ -67,13 +67,25 @@ def obtener_gps() -> str:
     return str([g.latlng[0], g.latlng[1]])
 
 
+@tool()
+def sumar(a: float, b: float):
+    """
+    Utiliza esta herramienta cuando te soliciten sumar
+    :param a: numero puede ser entero o decimal
+    :param b: numero puede ser entero o decimal
+    :return: el resultado de la suma
+    """
+    return a + b
+
+
 search_google = TavilySearchResults(max_results=2)
 # search = DuckDuckGoSearchRun()
 
 agent = create_react_agent(
     model,
     [
-        search_google
+        search_google,
+        sumar
      ],
     prompt=prompt_agent,
     checkpointer=MemorySaver()
